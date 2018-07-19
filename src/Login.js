@@ -6,13 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import ButtonLogin from './Button';
 import TextBox from './TextBox';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
-    width: 560,
+    width: 570,
     backgroundColor: '#F5F5DC',
     //justify: "center"
     marginLeft: 300,
@@ -28,19 +29,6 @@ const styles = theme => ({
 
 
 class Login extends React.Component {
-
-    componentDidMount() {
-        this.callApi()
-          .then(res => this.setState({ response: res.express }))
-          .catch(err => console.log(err));
-    }
-    callApi = async () => {
-        const response = await fetch('/');
-        const body = await response.json();
-        if (response.status !== 200) throw Error(body.message);
-    
-        return body;
-      };
     
   render(){
     const { classes } = this.props;
@@ -49,12 +37,31 @@ class Login extends React.Component {
             <Paper className={classes.root} elevation={1}>
             <Grid container spacing={24}>
                 <Grid item xs>
-                    <TextBox placeholder="Caminho do arquivo" value="Ex.: C:/Documentos/trabalho.pdf"/>
+                  <TextBox placeholder="Nome do arquivo" value="Ex.: Trabalho"/>
                 </Grid>
                 <Grid item xs>    
-                    <ButtonLogin name="Selecionar"/>
+                  <ButtonLogin name="Enviar"/>
                 </Grid>
-            </Grid>
+              </Grid>
+              
+              <Grid container spacing={24}>
+                <Grid item xs>
+                  <Typography variant="caption" gutterBottom align="center">
+                    <Divider light />
+                      OU
+                    <Divider light />
+                  </Typography>
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={24}>
+                  <Grid item xs>
+                    <TextBox placeholder="ID de busca" value="Informe o ID"/>
+                  </Grid> 
+                  <Grid item xs>    
+                    <ButtonLogin name="Baixar"/>
+                 </Grid> 
+              </Grid>
             </Paper>
         </div>
     );
