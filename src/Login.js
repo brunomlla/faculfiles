@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonLogin from './Button';
+import ButtonDownload from './ButtonDownload';
 import TextBox from './TextBox';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
@@ -34,10 +35,10 @@ class Login extends React.Component {
     const { classes } = this.props;
     return (
         <div>
-            <Paper className={classes.root} elevation={1}>
+         <Paper className={classes.root} elevation={1}>
             <Grid container spacing={24}>
                 <Grid item xs>
-                  <TextBox placeholder="Nome do arquivo" value="Ex.: Trabalho"/>
+                  <TextBox placeholder="Ex.: Trabalho" value="Nome do arquivo" enabled={false}/>
                 </Grid>
                 <Grid item xs>    
                   <ButtonLogin name="Enviar"/>
@@ -56,10 +57,10 @@ class Login extends React.Component {
 
               <Grid container spacing={24}>
                   <Grid item xs>
-                    <TextBox placeholder="ID de busca" value="Informe o ID"/>
+                    <TextBox placeholder="ID de busca" value="Informe o ID" enabled={true}/>
                   </Grid> 
                   <Grid item xs>    
-                    <ButtonLogin name="Baixar"/>
+                    <ButtonDownload name="Baixar"/>
                  </Grid> 
               </Grid>
             </Paper>

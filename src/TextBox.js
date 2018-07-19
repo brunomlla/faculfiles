@@ -23,7 +23,8 @@ class TextBox extends React.Component{
         super(props)
         this.state = {
             placeholder: props.placeholder,
-            value: props.value
+            value: props.value,
+            enabled: props.enabled
         }
     }
 
@@ -32,7 +33,7 @@ class TextBox extends React.Component{
         const { classes } = this.props;
         return(
             <div className={classes.container}>
-                <FormControl className={classes.formControl} >
+                <FormControl className={classes.formControl} disabled={!this.state.enabled}>
                     <InputLabel htmlFor="name-disabled">{ this.state.value }</InputLabel>
                     <Input id="name-disabled"  onChange={this.handleChange} />
                     <FormHelperText>{ this.state.placeholder }</FormHelperText>
