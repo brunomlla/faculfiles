@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonLogin from './Button';
-import ButtonDownload from './ButtonDownload';
+import Download from './Download';
 import TextBox from './TextBox';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
@@ -30,13 +30,20 @@ const styles = theme => ({
 
 
 class Login extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      textValue: ""
+    }
+  }
     
+
   render(){
     const { classes } = this.props;
     return (
         <div>
-         <Paper className={classes.root} elevation={1}>
-            <Grid container spacing={24}>
+          <Paper className={classes.root} elevation={1}>
+              <Grid container spacing={24}>
                 <Grid item xs>
                   <TextBox placeholder="Ex.: Trabalho" value="Nome do arquivo" enabled={false}/>
                 </Grid>
@@ -57,13 +64,10 @@ class Login extends React.Component {
 
               <Grid container spacing={24}>
                   <Grid item xs>
-                    <TextBox placeholder="ID de busca" value="Informe o ID" enabled={true}/>
+                    <Download/>
                   </Grid> 
-                  <Grid item xs>    
-                    <ButtonDownload name="Baixar"/>
-                 </Grid> 
               </Grid>
-            </Paper>
+          </Paper>
         </div>
     );
   }

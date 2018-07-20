@@ -55,7 +55,7 @@ class ButtonLogin extends React.Component{
 }
 
 
-Button.propTypes = {
+ButtonLogin.propTypes = {
     classes: PropTypes.object.isRequired,
   };
   

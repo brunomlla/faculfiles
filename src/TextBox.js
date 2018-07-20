@@ -28,13 +28,16 @@ class TextBox extends React.Component{
         }
     }
 
+    handleChange(e){
+        console.log(e.target.value)
+    }
 
     render(){
         const { classes } = this.props;
         return(
             <div className={classes.container}>
                 <FormControl className={classes.formControl} disabled={!this.state.enabled}>
-                    <InputLabel htmlFor="name-disabled">{ this.state.value }</InputLabel>
+                    <InputLabel htmlFor="name-disabled" onChange={(e) => this.handleChange(e)}>{ this.state.value }</InputLabel>
                     <Input id="name-disabled"  onChange={this.handleChange} />
                     <FormHelperText>{ this.state.placeholder }</FormHelperText>
                 </FormControl>
