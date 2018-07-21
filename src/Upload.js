@@ -41,16 +41,42 @@ class Upload extends React.Component{
             enabled: props.enabled,
             name: props.name
         }
+
+        this.handleChangeText = this.handleChangeText.bind(this)
     }
 
-    handleTextChange(e){
+    handleClick() {   
+        this.callApi()
+          .then(res => this.setState({ response: res.express }))
+          .catch(err => console.log(err));
+
+      }
+    
+      callApi = async () => {
+        
+        const response = await fetch('/api/file/upload?filename=' + this.state.textValue);
+        const body = await response.json();
+        console.log(body)
+        if (response.status !== 200){
+            throw Error(body.message);
+        }
+            
+        return body;
+      };
+    
+
+     handleChangeText(e){
+        this.setState({textValue: e.target.value})
+    }
+
+    /*handleTextChange(e){
         console.log(e.target[0])
     }
 
     handleButtonChange(FileList){
         this.setState({value: FileList[0].name})
         console.log(FileList[0].name);
-    }
+    }*/
 
     render(){
         const { classes } = this.props;
@@ -59,24 +85,15 @@ class Upload extends React.Component{
                 <Grid container spacing={24}>
                     <Grid item xs>
                         <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="name-disabled" onChange={(e) => this.handleTextChange(e)}>{this.state.value}</InputLabel>
-                            <Input id="name-disabled"  onChange={this.handleTextChange} />
+                            <InputLabel htmlFor="name-disabled" onChange={(e) => this.handleChangeText(e)}>{this.state.value}</InputLabel>
+                            <Input id="name-disabled"  onChange={this.handleChangeText} />
                             <FormHelperText>Ex.: C:\arquivo.pdf</FormHelperText>
                         </FormControl>
                     </Grid>
 
                     <Grid item xs>
-                        <input
-                            //accept="image/*"
-                            className={classes.input}
-                            id="outlined-button-file"
-                            multiple
-                            type="file"
-                            ref="fileUploader"
-                            onChange={ (e) => this.handleButtonChange(e.target.files) }
-                        />
                         <label htmlFor="outlined-button-file">
-                            <Button variant="outlined" component="span" className={classes.button}>
+                            <Button variant="outlined" className={classes.button} onClick={ () => this.handleClick() }>
                             { this.state.name }
                             <CloudUploadIcon className={classes.rightIcon} />
                             </Button>

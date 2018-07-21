@@ -62,7 +62,7 @@ class Download extends React.Component{
             
         return body;
       };
-
+    
 
      handleChangeText(e){
         this.setState({textValue: e.target.value})
