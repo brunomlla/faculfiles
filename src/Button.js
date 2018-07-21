@@ -27,7 +27,7 @@ class ButtonLogin extends React.Component{
 
     handleChange(FileList)
     {
-        console.log(FileList[0].name);
+        //console.log(FileList[0]);
     }
 
     render(){

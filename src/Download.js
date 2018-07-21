@@ -42,16 +42,10 @@ class Download extends React.Component{
         this.handleChangeText = this.handleChangeText.bind(this)
     }
 
-    handleClick() {
-            var result = this.state.textValue.split("");
-            var baga = result.map(function(val) {
-              return btoa(val.charCodeAt()); 
-            });
-            console.log(baga)
-           
-        /*this.callApi()
+    handleClick() {   
+        this.callApi()
           .then(res => this.setState({ response: res.express }))
-          .catch(err => console.log(err));*/
+          .catch(err => console.log(err));
 
       }
     
@@ -59,9 +53,13 @@ class Download extends React.Component{
         
         const response = await fetch('/api/file/meta?filename=' + this.state.textValue);
         const body = await response.json();
-        console.log(body[0]._id)
-        if (response.status !== 200) throw Error(body.message);
-    
+        console.log(body)
+        if (response.status !== 200){
+            throw Error(body.message);
+        }else{
+            window.open("http://localhost:8081/api/file/download?filename=" + this.state.textValue)
+        }
+            
         return body;
       };
 

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import ButtonLogin from './Button';
+import Upload from './Upload';
 import Download from './Download';
-import TextBox from './TextBox';
+import TextBox from './Upload';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
@@ -44,11 +44,8 @@ class Login extends React.Component {
         <div>
           <Paper className={classes.root} elevation={1}>
               <Grid container spacing={24}>
-                <Grid item xs>
-                  <TextBox placeholder="Ex.: Trabalho" value="Nome do arquivo" enabled={false}/>
-                </Grid>
                 <Grid item xs>    
-                  <ButtonLogin name="Enviar"/>
+                  <Upload name="Enviar"/>
                 </Grid>
               </Grid>
               
